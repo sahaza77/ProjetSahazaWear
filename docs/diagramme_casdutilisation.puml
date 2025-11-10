@@ -1,0 +1,59 @@
+@startuml
+!theme plain
+left to right direction
+
+' acteurs de gauche
+actor "Visiteur" as Visiteur
+actor "Utilisateur" as Utilisateur
+actor "Administrateur" as Admin
+
+rectangle "Projet SahazaWear" {
+  (Consulter les produits) as UC1
+  (Rechercher un produit) as UC2
+  (Consulter la politique de confidentialité) as UC3
+  (S'inscrire) as UC4
+  (Se connecter) as UC5
+
+  (Ajouter un produit au panier) as UC6
+  (Modifier le panier) as UC7
+  (Passer une commande) as UC8
+  (Consulter ses commandes) as UC9
+  (Modifier son profil) as UC10
+  (Changer / réinitialiser mot de passe) as UC11
+  (Supprimer son compte) as UC12
+  (Donner un avis) as UC13
+  (Obtenir des recommandations de style) as UC14
+
+  (Gérer les produits) as UC15
+  (Gérer les utilisateurs) as UC16
+  (Gérer les commandes) as UC17
+  (Consulter les statistiques) as UC18
+}
+
+
+' Liens acteurs → cas d'utilisation (Visiteur & Utilisateur)
+Visiteur --> UC1
+Visiteur --> UC2
+Visiteur --> UC3
+Visiteur --> UC4
+Visiteur --> UC5
+
+Utilisateur --> UC1
+Utilisateur --> UC2
+Utilisateur --> UC6
+Utilisateur --> UC7
+Utilisateur --> UC8
+Utilisateur --> UC9
+Utilisateur --> UC10
+Utilisateur --> UC11
+Utilisateur --> UC12
+Utilisateur --> UC13
+Utilisateur --> UC14
+
+' Liens acteur Admin → cas admin
+UC15 <-- Admin
+UC16 <-- Admin
+UC17 <-- Admin
+UC18 <-- Admin
+
+@enduml

@@ -1,0 +1,125 @@
+@startuml
+left to right direction
+title Diagramme de classes - Projet SahazaWear
+
+' ==============================
+'   CLASSES PRINCIPALES
+' ==============================
+class Utilisateur {
+  id : Int
+  nom : String
+  email : String
+  motDePasse : String
+  dateCreation : LocalDate
+  dateModification : LocalDate
+}
+
+class Role {
+  id : Int
+  nom : String
+}
+
+class Produit {
+  id : Int
+  nom : String
+  description : String
+  prix : Double
+  categorie : String
+  dateCreation : LocalDate
+  dateModification : LocalDate
+}
+
+class Variante {
+  id : Int
+  stock : Int
+}
+
+class Taille {
+  id : Int
+  nom : String
+}
+
+class Couleur {
+  id : Int
+  nom : String
+  codecouleur : String
+}
+
+class Image {
+  id : Int
+  chemin : String
+  estPrincipale : Boolean
+}
+
+class Panier {
+  id : Int
+  dateCreation : LocalDate
+  dateModification : LocalDate
+}
+
+class LignePanier {
+  quantite : Int
+}
+
+class Commande {
+  id : Int
+  dateCommande : LocalDate
+  dateCreation : LocalDate
+  dateModification : LocalDate
+  montantTotal : Double
+  statut : String
+}
+
+class LigneCommande {
+  quantite : Int
+}
+
+class Avis {
+  id : Int
+  commentaire : String
+  note : Int
+  dateAvis : LocalDate
+  dateCreation : LocalDate
+  dateModification : LocalDate
+}
+
+' ==============================
+'   RELATIONS UTILISATEUR / ROLE
+' ==============================
+Utilisateur "*" -- "1" Role : appartient à >
+Utilisateur "1" -- "1" Panier : possède >
+Utilisateur "1" -- "*" Commande : passe >
+Utilisateur "1" -- "*" Avis : rédige >
+
+' ==============================
+'   RELATIONS PRODUIT / VARIANTE
+' ==============================
+Produit "1" -- "*" Variante : propose >
+Variante "*" -- "1" Produit : appartient à >
+Variante "*" -- "1" Taille : a pour taille >
+Variante "*" -- "1" Couleur : a pour couleur >
+Variante "1" -- "*" Image : illustre >
+Produit "1" -- "*" Avis : reçoit >
+
+' ==============================
+'   RELATIONS PANIER / COMMANDE
+' ==============================
+Panier "1" - "0..*" Variante : contient >
+Commande "1" - "0..*" Variante : inclut >
+
+(Panier, Variante) .. LignePanier
+(Commande, Variante) .. LigneCommande
+
+' ==============================
+'   ORGANISATION VISUELLE
+' ==============================
+' Ces lignes cachées servent uniquement à aligner correctement les classes
+Role -[hidden]-> Utilisateur
+Utilisateur -[hidden]-> Produit
+Produit -[hidden]-> Variante
+Variante -[hidden]-> Taille
+Taille -[hidden]-> Couleur
+Panier -[hidden]-> Commande
+Image -[hidden]-> Avis
+
+@enduml
