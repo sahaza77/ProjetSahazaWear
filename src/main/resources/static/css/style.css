@@ -1,0 +1,86 @@
+/* --- CHARTE GRAPHIQUE --- */
+:root {
+    --bleu-fonce: #1E2A38;
+    --camel: #C79A6D;
+    --sable: #F3E9DC;
+    --blanc: #FFFFFF;
+    --noir: #222222;
+}
+
+/* --- BODY --- */
+body {
+    margin: 0;
+    font-family: 'Nunito', sans-serif;
+    background-color: var(--sable);
+    color: var(--noir);
+}
+
+/* --- HEADER --- */
+header {
+    background-color: var(--bleu-fonce);
+    padding: 15px 50px;
+}
+
+/* Container flex pour logo et menu */
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Logo */
+.logo {
+    height: 80px; /* taille proportionnée */
+}
+
+/* Menu à droite */
+nav {
+    display: flex;
+    align-items: center;
+}
+
+nav .menu-link {
+    color: var(--blanc); /* blanc pur */
+    text-decoration: none;
+    margin-left: 25px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+/* Hover, focus et active pour menu */
+nav .menu-link:hover,
+nav .menu-link:focus,
+nav .menu-link:active {
+    color: var(--camel); /* Camel doux */
+    transition: 0.3s;
+}
+
+/* --- FOOTER --- */
+footer {
+    background-color: var(--bleu-fonce);
+    color: var(--blanc);
+    text-align: center;
+    padding: 25px 10px;
+    font-size: 0.9em;
+}
+
+footer a {
+    color: var(--blanc);
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: var(--camel);
+    transition: 0.3s;
+}
+
+.footer-links {
+    margin-bottom: 10px;
+}
+
+.footer-copy {
+    color: var(--camel);
+    font-size: 0.85em;
+}
