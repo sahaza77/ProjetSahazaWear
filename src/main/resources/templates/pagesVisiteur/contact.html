@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org" th:replace="base :: html">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact - SahazaWear</title>
+</head>
+<body>
+
+<div th:fragment="content">
+    <section class="page-contact">
+        <div class="contact-header">
+            <h1>Contactez-nous</h1>
+            <p class="contact-subtitle">Une question ? Une suggestion ? Nous sommes à votre écoute !</p>
+        </div>
+
+        <div class="contact-container">
+            <!-- Formulaire de contact -->
+            <div class="contact-form-section">
+                <h2>Envoyez-nous un message</h2>
+                <form class="contact-form" action="/contact" method="POST">
+                    <div class="form-group">
+                        <label for="nom">Nom complet *</label>
+                        <input type="text" id="nom" name="nom" required placeholder="Votre nom">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" name="email" required placeholder="votre.email@exemple.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="sujet">Sujet *</label>
+                        <select id="sujet" name="sujet" required>
+                            <option value="">Sélectionnez un sujet</option>
+                            <option value="commande">Question sur une commande</option>
+                            <option value="produit">Information sur un produit</option>
+                            <option value="retour">Retour / Échange</option>
+                            <option value="partenariat">Partenariat</option>
+                            <option value="autre">Autre</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Message *</label>
+                        <textarea id="message" name="message" rows="6" required placeholder="Décrivez votre demande..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-submit">Envoyer le message</button>
+                </form>
+            </div>
+
+            <!-- Informations de contact -->
+            <div class="contact-info-section">
+                <h2>Nos coordonnées</h2>
+
+                <div class="info-card">
+                    <div class="info-icon">📍</div>
+                    <h3>Adresse</h3>
+                    <p>12 Rue des Créateurs, 77120 Coulommiers</p>
+                    <p class="info-detail">Sur rendez-vous uniquement</p>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-icon">📞</div>
+                    <h3>Téléphone</h3>
+                    <p>+33 1 60 00 00 00</p>
+                    <p class="info-detail">Du lundi au vendredi, 9h - 18h</p>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-icon">✉️</div>
+                    <h3>Email</h3>
+                    <p>contact@sahazawear.fr</p>
+                    <p class="info-detail">Réponse sous 24h ouvrées</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section FAQ -->
+        <div class="contact-faq">
+            <h2>Questions fréquentes</h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h3>Quels sont les délais de livraison ?</h3>
+                    <p>Nos livraisons prennent entre 3 et 5 jours ouvrés en France métropolitaine.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Puis-je retourner un produit ?</h3>
+                    <p>Oui, vous disposez de 14 jours après réception pour retourner votre commande.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Proposez-vous des cartes cadeaux ?</h3>
+                    <p>Oui, nous proposons des e-cartes cadeaux valables un an sur tout le site.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Comment suivre ma commande ?</h3>
+                    <p>Un lien de suivi vous est envoyé par mail dès que votre commande est expédiée.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+</body>
+</html>

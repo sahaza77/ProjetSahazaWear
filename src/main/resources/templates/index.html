@@ -2,17 +2,50 @@
 <html lang="fr" xmlns:th="http://www.thymeleaf.org" th:replace="base :: html">
 <head>
     <meta charset="UTF-8">
-    <title>SahazaWear</title>
+    <title>SahazaWear - Accueil</title>
 </head>
 <body>
 
-
-
 <!-- Contenu principal -->
 <div th:fragment="content">
-    <h1>SahazaWear – Le style au quotidien</h1>
-</div>
+    <!-- Bannière -->
+    <section class="banner-section">
+        <img th:src="@{img/banniere.png}" alt="Collection" class="banner-img">
+    </section>
 
+    <!-- Catégories -->
+    <section class="categories-section">
+        <h2 class="section-title">CATÉGORIES</h2>
+        <div class="categories-grid">
+            <a href="/produits?categorie=homme" class="category-card">
+                <span>HOMME</span>
+            </a>
+            <a href="/produits?categorie=promotions" class="category-card">
+                <span>PROMOTIONS</span>
+            </a>
+            <a href="/produits?categorie=accessoires" class="category-card">
+                <span>ACCESSOIRES</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- Produits Tendances -->
+    <section class="trending-section">
+        <h2 class="section-title">PRODUITS TENDANCES</h2>
+        <div class="trending-grid">
+            <div class="product-card">
+                <!-- Ici tu ajouteras tes produits dynamiquement -->
+                <div class="product-placeholder"></div>
+            </div>
+            <div class="product-card">
+                <div class="product-placeholder"></div>
+            </div>
+            <div class="product-card">
+                <div class="product-placeholder"></div>
+            </div>
+        </div>
+    </section>
+</div>
 
 </body>
 </html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org" th:replace="base :: html">
+<head>
+    <meta charset="UTF-8">
+    <title>Inscription - SahazaWear</title>
+</head>
+<body>
+
+<div th:fragment="content">
+    <section class="page-inscription">
+        <div class="inscription-container">
+            <div class="inscription-header">
+                <h1>Créer un compte</h1>
+                <p>Rejoignez la communauté SahazaWear et profitez d'avantages exclusifs</p>
+            </div>
+
+            <div class="inscription-content">
+                <!-- Avantages -->
+                <div class="avantages-section">
+                    <h2>Pourquoi créer un compte ?</h2>
+                    <div class="avantages-list">
+                        <div class="avantage-item">
+                            <span class="avantage-icon">🛍️</span>
+                            <div>
+                                <h3>Commandes rapides</h3>
+                                <p>Enregistrez vos informations pour commander en un clic</p>
+                            </div>
+                        </div>
+                        <div class="avantage-item">
+                            <span class="avantage-icon">📦</span>
+                            <div>
+                                <h3>Suivi des commandes</h3>
+                                <p>Consultez l'historique et le statut de vos commandes</p>
+                            </div>
+                        </div>
+                        <div class="avantage-item">
+                            <span class="avantage-icon">⭐</span>
+                            <div>
+                                <h3>Offres exclusives</h3>
+                                <p>Recevez des promotions réservées aux membres</p>
+                            </div>
+                        </div>
+                        <div class="avantage-item">
+                            <span class="avantage-icon">❤️</span>
+                            <div>
+                                <h3>Liste de souhaits</h3>
+                                <p>Sauvegardez vos articles préférés</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Formulaire d'inscription -->
+                <div class="inscription-form-section">
+                    <form class="inscription-form" action="/inscription" method="POST">
+                        <h2>Vos informations</h2>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="prenom">Prénom *</label>
+                                <input type="text" id="prenom" name="prenom" required placeholder="Votre prénom">
+                            </div>
+                            <div class="form-group">
+                                <label for="nom">Nom *</label>
+                                <input type="text" id="nom" name="nom" required placeholder="Votre nom">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email *</label>
+                            <input type="email" id="email" name="email" required placeholder="votre.email@exemple.com">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="telephone">Téléphone</label>
+                            <input type="tel" id="telephone" name="telephone" placeholder="+33 6 XX XX XX XX">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password">Mot de passe *</label>
+                            <input type="password" id="password" name="password" required placeholder="Minimum 8 caractères">
+                            <small class="form-hint">Le mot de passe doit contenir au moins 8 caractères</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password-confirm">Confirmer le mot de passe *</label>
+                            <input type="password" id="password-confirm" name="passwordConfirm" required placeholder="Confirmez votre mot de passe">
+                        </div>
+
+                        <div class="form-group-checkbox">
+                            <input type="checkbox" id="newsletter" name="newsletter">
+                            <label for="newsletter">Je souhaite recevoir les offres et actualités de SahazaWear</label>
+                        </div>
+
+                        <div class="form-group-checkbox">
+                            <input type="checkbox" id="cgv" name="cgv" required>
+                            <label for="cgv">J'accepte les <a href="/mentions-legales">conditions générales de vente</a> et la <a href="/rgpd">politique de confidentialité</a> *</label>
+                        </div>
+
+                        <button type="submit" class="btn-submit-inscription">Créer mon compte</button>
+
+                        <p class="form-footer">
+                            Vous avez déjà un compte ? <a href="/connexion">Connectez-vous</a>
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+</body>
+</html>

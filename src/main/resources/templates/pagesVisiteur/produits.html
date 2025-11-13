@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org" th:replace="base :: html">
+<head>
+    <meta charset="UTF-8">
+    <title>Nos Produits - SahazaWear</title>
+</head>
+<body>
+
+<div th:fragment="content">
+    <section class="page-produits">
+        <div class="produits-header">
+            <h1>Notre Collection</h1>
+            <p>Découvrez nos vêtements et accessoires streetwear</p>
+        </div>
+
+        <div class="produits-container">
+            <!-- Sidebar Filtres -->
+            <aside class="filtres-sidebar">
+                <div class="filtre-section">
+                    <h3>Catégories</h3>
+                    <div class="filtre-options">
+                        <label class="filtre-checkbox">
+                            <input type="checkbox" name="categorie" value="tshirts">
+                            <span>T-shirts</span>
+                        </label>
+                        <label class="filtre-checkbox">
+                            <input type="checkbox" name="categorie" value="sweats">
+                            <span>Sweats & Hoodies</span>
+                        </label>
+                        <label class="filtre-checkbox">
+                            <input type="checkbox" name="categorie" value="pantalons">
+                            <span>Pantalons & Jeans</span>
+                        </label>
+                        <label class="filtre-checkbox">
+                            <input type="checkbox" name="categorie" value="vestes">
+                            <span>Vestes</span>
+                        </label>
+                        <label class="filtre-checkbox">
+                            <input type="checkbox" name="categorie" value="accessoires">
+                            <span>Accessoires</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="filtre-section">
+                    <h3>Tailles</h3>
+                    <div class="filtre-options">
+                        <label class="filtre-checkbox">
+                            <input type="checkbox" name="taille" value="S">
+                            <span>S</span>
+                        </label>
+                        <label class="filtre-checkbox">
+                            <input type="checkbox" name="taille" value="M">
+                            <span>M</span>
+                        </label>
+                        <label class="filtre-checkbox">
+                            <input type="checkbox" name="taille" value="L">
+                            <span>L</span>
+                        </label>
+                        <label class="filtre-checkbox">
+                            <input type="checkbox" name="taille" value="XL">
+                            <span>XL</span>
+                        </label>
+                        <label class="filtre-checkbox">
+                            <input type="checkbox" name="taille" value="XXL">
+                            <span>XXL</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="filtre-section">
+                    <h3>Prix</h3>
+                    <div class="filtre-options">
+                        <label class="filtre-checkbox">
+                            <input type="checkbox" name="prix" value="0-25">
+                            <span>Moins de 25€</span>
+                        </label>
+                        <label class="filtre-checkbox">
+                            <input type="checkbox" name="prix" value="25-50">
+                            <span>25€ - 50€</span>
+                        </label>
+                        <label class="filtre-checkbox">
+                            <input type="checkbox" name="prix" value="50-75">
+                            <span>50€ - 75€</span>
+                        </label>
+                        <label class="filtre-checkbox">
+                            <input type="checkbox" name="prix" value="75+">
+                            <span>Plus de 75€</span>
+                        </label>
+                    </div>
+                </div>
+
+                <button class="btn-reset-filtres">Réinitialiser les filtres</button>
+            </aside>
+
+            <!-- Grille de produits -->
+            <div class="produits-content">
+                <div class="produits-toolbar">
+                    <p class="produits-count">
+                        <span class="count-number">24</span> produits trouvés
+                    </p>
+                    <select class="tri-select">
+                        <option value="pertinence">Pertinence</option>
+                        <option value="prix-asc">Prix croissant</option>
+                        <option value="prix-desc">Prix décroissant</option>
+                        <option value="nouveautes">Nouveautés</option>
+                        <option value="populaires">Les plus populaires</option>
+                    </select>
+                </div>
+
+                <!-- Grille produits (à remplir dynamiquement avec Thymeleaf) -->
+                <div class="produits-grid">
+                    <!-- Exemple de carte produit (placeholder) -->
+                    <div class="produit-card">
+                        <div class="produit-image">
+                            <div class="image-placeholder">
+                                <span>Photo</span>
+                            </div>
+                            <span class="produit-badge nouveau">Nouveau</span>
+                        </div>
+                        <div class="produit-info">
+                            <h3 class="produit-nom">Hoodie Essential</h3>
+                            <p class="produit-categorie">Sweats</p>
+                            <p class="produit-prix">49,99 €</p>
+                            <button class="btn-ajouter-panier">Ajouter au panier</button>
+                        </div>
+                    </div>
+
+                    <div class="produit-card">
+                        <div class="produit-image">
+                            <div class="image-placeholder">
+                                <span>Photo</span>
+                            </div>
+                            <span class="produit-badge promo">-20%</span>
+                        </div>
+                        <div class="produit-info">
+                            <h3 class="produit-nom">T-shirt Graphic</h3>
+                            <p class="produit-categorie">T-shirts</p>
+                            <p class="produit-prix">
+                                <span class="prix-barre">29,99 €</span>
+                                <span class="prix-promo">23,99 €</span>
+                            </p>
+                            <button class="btn-ajouter-panier">Ajouter au panier</button>
+                        </div>
+                    </div>
+
+                    <div class="produit-card">
+                        <div class="produit-image">
+                            <div class="image-placeholder">
+                                <span>Photo</span>
+                            </div>
+                        </div>
+                        <div class="produit-info">
+                            <h3 class="produit-nom">Casquette Urban</h3>
+                            <p class="produit-categorie">Accessoires</p>
+                            <p class="produit-prix">19,99 €</p>
+                            <button class="btn-ajouter-panier">Ajouter au panier</button>
+                        </div>
+                    </div>
+
+                    <!-- Répéter pour plus de produits -->
+                    <div class="produit-card">
+                        <div class="produit-image">
+                            <div class="image-placeholder">
+                                <span>Photo</span>
+                            </div>
+                        </div>
+                        <div class="produit-info">
+                            <h3 class="produit-nom">Jean Slim Fit</h3>
+                            <p class="produit-categorie">Pantalons</p>
+                            <p class="produit-prix">59,99 €</p>
+                            <button class="btn-ajouter-panier">Ajouter au panier</button>
+                        </div>
+                    </div>
+
+                    <div class="produit-card">
+                        <div class="produit-image">
+                            <div class="image-placeholder">
+                                <span>Photo</span>
+                            </div>
+                            <span class="produit-badge nouveau">Nouveau</span>
+                        </div>
+                        <div class="produit-info">
+                            <h3 class="produit-nom">Veste Coach</h3>
+                            <p class="produit-categorie">Vestes</p>
+                            <p class="produit-prix">79,99 €</p>
+                            <button class="btn-ajouter-panier">Ajouter au panier</button>
+                        </div>
+                    </div>
+
+                    <div class="produit-card">
+                        <div class="produit-image">
+                            <div class="image-placeholder">
+                                <span>Photo</span>
+                            </div>
+                        </div>
+                        <div class="produit-info">
+                            <h3 class="produit-nom">Sac Bandoulière</h3>
+                            <p class="produit-categorie">Accessoires</p>
+                            <p class="produit-prix">34,99 €</p>
+                            <button class="btn-ajouter-panier">Ajouter au panier</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pagination -->
+                <div class="pagination">
+                    <button class="pagination-btn" disabled>Précédent</button>
+                    <button class="pagination-btn active">1</button>
+                    <button class="pagination-btn">2</button>
+                    <button class="pagination-btn">3</button>
+                    <button class="pagination-btn">Suivant</button>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+</body>
+</html>
