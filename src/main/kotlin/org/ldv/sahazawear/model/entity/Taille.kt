@@ -1,0 +1,14 @@
+package org.ldv.sahazawear.model.entity
+
+import jakarta.persistence.*
+
+@Entity
+class Taille(
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(nullable = false)
+    var id: Long?,
+
+    @Column(nullable = false, unique = true)
+    var nom: String
+)

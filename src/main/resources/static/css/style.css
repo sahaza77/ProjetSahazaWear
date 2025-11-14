@@ -146,24 +146,14 @@ nav .menu-link:hover::after {
     margin-bottom: 50px;
 }
 
-.banner-placeholder {
-    width: 100%;
-    height: 400px;
-    background: linear-gradient(135deg, #cccccc 0%, #999999 100%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--blanc);
-    font-size: 2rem;
-    font-weight: bold;
-    letter-spacing: 3px;
-}
-
 .banner-img {
     width: 100%;
-    height: 450px;
-    object-fit: contain;
-    background-color: white;
+    height: auto; /* S'adapte à la hauteur naturelle de l'image */
+    max-height: 500px; /* Limite la hauteur max */
+    object-fit: contain; /* Garde toute l'image visible */
+    object-position: center;
+    display: block;
+    background-color: var(--sable); /* Fond de la même couleur que le site */
 }
 
 /* --- SECTIONS --- */
@@ -305,6 +295,18 @@ footer {
 }
 
 /* --- RESPONSIVE --- */
+@media (max-width: 1024px) {
+    .banner-img {
+        height: 350px;
+    }
+}
+
+@media (max-width: 768px) {
+    .banner-img {
+        height: 280px;
+    }
+}
+
 @media (max-width: 1024px) {
     header .container {
         grid-template-columns: 150px 1fr 250px;
