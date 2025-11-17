@@ -10,5 +10,10 @@ class Taille(
     var id: Long?,
 
     @Column(nullable = false, unique = true)
-    var nom: String
+    var nom: String,
+
+    // ========== RELATION INVERSE (optionnelle) ==========
+    @OneToMany(mappedBy = "taille", fetch = FetchType.LAZY)
+    var variantes: MutableList<Variante> = mutableListOf()
+    // ====================================================
 )

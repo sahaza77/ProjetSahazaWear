@@ -26,5 +26,16 @@ class Produit(
     var dateCreation: LocalDate,
 
     @Column(nullable = false)
-    var dateModification: LocalDate
+    var dateModification: LocalDate,
+
+    // ========== NOUVELLES RELATIONS ==========
+    @OneToMany(mappedBy = "produit", cascade = [CascadeType.ALL], orphanRemoval = true)
+    var variantes: MutableList<Variante> = mutableListOf(),
+
+    @OneToMany(mappedBy = "produit", cascade = [CascadeType.ALL], orphanRemoval = true)
+    var images: MutableList<Image> = mutableListOf(),
+
+    @OneToMany(mappedBy = "produit", cascade = [CascadeType.ALL], orphanRemoval = true)
+    var avis: MutableList<Avis> = mutableListOf()
+    // =========================================
 )

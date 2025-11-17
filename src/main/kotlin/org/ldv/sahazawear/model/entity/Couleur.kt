@@ -13,5 +13,10 @@ class Couleur(
     var nom: String,
 
     @Column(nullable = false, unique = true)
-    var codeHexadecimal: String
+    var codeHexadecimal: String,
+
+    // ========== RELATION INVERSE (optionnelle) ==========
+    @OneToMany(mappedBy = "couleur", fetch = FetchType.LAZY)
+    var variantes: MutableList<Variante> = mutableListOf()
+    // ====================================================
 )

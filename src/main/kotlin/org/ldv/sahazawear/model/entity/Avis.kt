@@ -20,5 +20,16 @@ class Avis(
     var dateCreation: LocalDate,
 
     @Column(nullable = false)
-    var dateModification: LocalDate
+    var dateModification: LocalDate,
+
+    // Relation avec Produit
+    @ManyToOne
+    @JoinColumn(name = "produit_id", nullable = false)
+    var produit: Produit,
+
+    // ========== NOUVELLE RELATION ==========
+    @ManyToOne
+    @JoinColumn(name = "utilisateur_id", nullable = false)
+    var utilisateur: Utilisateur
+    // =======================================
 )

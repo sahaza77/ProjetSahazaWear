@@ -23,5 +23,22 @@ class Utilisateur(
     var dateCreation: LocalDate,
 
     @Column(nullable = false)
-    var dateModification: LocalDate
+    var dateModification: LocalDate,
+
+    // Relation avec Role
+    @ManyToOne
+    @JoinColumn(name = "role_id", nullable = false)
+    var role: Role,
+
+    // Relation avec Panier
+    @OneToOne(mappedBy = "utilisateur", cascade = [CascadeType.ALL])
+    var panier: Panier? = null,
+
+    // ========== NOUVELLES RELATIONS ==========
+    @OneToMany(mappedBy = "utilisateur", cascade = [CascadeType.ALL])
+    var commandes: MutableList<Commande> = mutableListOf(),
+
+    @OneToMany(mappedBy = "utilisateur", cascade = [CascadeType.ALL])
+    var avis: MutableList<Avis> = mutableListOf()
+    // =========================================
 )

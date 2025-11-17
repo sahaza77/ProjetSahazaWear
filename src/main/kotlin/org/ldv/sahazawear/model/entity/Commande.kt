@@ -23,5 +23,14 @@ class Commande(
     var montantTotal: Double,
 
     @Column(nullable = false)
-    var statut: String
+    var statut: String,
+
+    // ========== NOUVELLES RELATIONS ==========
+    @ManyToOne
+    @JoinColumn(name = "utilisateur_id", nullable = false)
+    var utilisateur: Utilisateur,
+
+    @OneToMany(mappedBy = "commande", cascade = [CascadeType.ALL], orphanRemoval = true)
+    var lignes: MutableList<LigneCommande> = mutableListOf()
+    // =========================================
 )

@@ -10,5 +10,10 @@ class Role(
     var id: Long?,
 
     @Column(nullable = false, unique = true)
-    var nom: String
+    var nom: String,
+
+    // ========== RELATION INVERSE (optionnelle) ==========
+    @OneToMany(mappedBy = "role", fetch = FetchType.LAZY)
+    var utilisateurs: MutableList<Utilisateur> = mutableListOf()
+    // ====================================================
 )

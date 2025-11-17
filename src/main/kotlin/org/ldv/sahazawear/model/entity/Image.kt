@@ -13,5 +13,11 @@ class Image(
     var chemin: String,
 
     @Column(nullable = false)
-    var estPrincipale: Boolean
+    var estPrincipale: Boolean,
+
+    // ========== NOUVELLE RELATION ==========
+    @ManyToOne
+    @JoinColumn(name = "produit_id", nullable = false)
+    var produit: Produit
+    // =======================================
 )

@@ -14,5 +14,15 @@ class Panier(
     var dateCreation: LocalDate,
 
     @Column(nullable = false)
-    var dateModification: LocalDate
+    var dateModification: LocalDate,
+
+    // Relation avec Utilisateur
+    @OneToOne
+    @JoinColumn(name = "utilisateur_id", nullable = false)
+    var utilisateur: Utilisateur,
+
+    // ========== NOUVELLE RELATION ==========
+    @OneToMany(mappedBy = "panier", cascade = [CascadeType.ALL], orphanRemoval = true)
+    var lignes: MutableList<LignePanier> = mutableListOf()
+    // =======================================
 )
