@@ -178,25 +178,25 @@ class DataInitializer(
         println("📷 Création des images...")
 
         val imagesProduit1 = listOf(
-            Image(id = null, chemin = "/images/tshirt-essential-noir.jpg", estPrincipale = true, produit = produit1),
-            Image(id = null, chemin = "/images/tshirt-essential-blanc.jpg", estPrincipale = false, produit = produit1)
+            Image(id = null, chemin = "img/produits/tshirt-essential-noir.jpg", estPrincipale = true, produit = produit1),
+            Image(id = null, chemin = "img/produits/tshirt-essential-blanc.jpg", estPrincipale = false, produit = produit1)
         )
 
         val imagesProduit2 = listOf(
-            Image(id = null, chemin = "/images/hoodie-urban-noir.jpg", estPrincipale = true, produit = produit2),
-            Image(id = null, chemin = "/images/hoodie-urban-gris.jpg", estPrincipale = false, produit = produit2)
+            Image(id = null, chemin = "img/produits/hoodie-urban-noir.jpg", estPrincipale = true, produit = produit2),
+            Image(id = null, chemin = "img/produits/hoodie-urban-gris.jpg", estPrincipale = false, produit = produit2)
         )
 
         val imagesProduit3 = listOf(
-            Image(id = null, chemin = "/images/jean-slim-bleu.jpg", estPrincipale = true, produit = produit3)
+            Image(id = null, chemin = "img/produits/jean-slim-bleu.jpg", estPrincipale = true, produit = produit3)
         )
 
         val imagesProduit4 = listOf(
-            Image(id = null, chemin = "/images/casquette-logo-noir.jpg", estPrincipale = true, produit = produit4)
+            Image(id = null, chemin = "img/produits/casquette-logo-noir.jpg", estPrincipale = true, produit = produit4)
         )
 
         val imagesProduit5 = listOf(
-            Image(id = null, chemin = "/images/veste-bomber-noir.jpg", estPrincipale = true, produit = produit5)
+            Image(id = null, chemin = "img/produits/veste-bomber-noir.jpg", estPrincipale = true, produit = produit5)
         )
 
         imageDAO.saveAll(imagesProduit1 + imagesProduit2 + imagesProduit3 + imagesProduit4 + imagesProduit5)

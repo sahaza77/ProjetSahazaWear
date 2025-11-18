@@ -1,10 +1,105 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<html th:replace="base :: html" lang="fr" xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="content">
+    <main class="py-5">
+        <div class="container">
+            <h1 class="nb-5 text-center"> Gestion des produits</h1>
+            <p> Nombre de produits : <span th:text="${produits.size()}"></span> </p>
+            <a href="" class="btn btn-success">+ Produit</a>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nom</th>
+                    <th>Description</th>
+                    <th>Prix</th>
+                    <th>Catégorie</th>
+                    <th>Date de création</th>
+                    <th>Date de modification</th>
+                    <th>Variantes</th>
+                    <th>Images</th>
+                    <th>Avis</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="produit : ${produits}">
+                    <td th:text="${produit.id}"></td>
+                    <td th:text="${produit.nom}"></td>
+                    <!-- DESCRIPTION (tronquée) -->
+                    <td>
+                        <span th:text="${#strings.abbreviate(produit.description, 80)}"></span>
+                    </td>
+                    <!-- PRIX -->
+                    <td>
+                        <span class="badge bg-success" th:text="${#numbers.formatDecimal(produit.prix, 1, 2)} + ' €'"></span>
+                    </td>
+                    <td th:text="${produit.categorie}"></td>
+                    <td th:text="${produit.dateCreation}"></td>
+                    <td th:text="${produit.dateModification}"></td>
+                    <!-- VARIANTES (Affichage amélioré) -->
+                    <td>
+                        <span class="badge bg-info text-dark" th:text="${produit.variantes.size()} + ' variante(s)'"></span>
+                        <button class="btn btn-sm btn-outline-secondary" type="button"
+                                th:attr="data-bs-toggle='collapse', data-bs-target='#variantes-' + ${produit.id}">
+                            <i class="bi bi-eye"></i> Voir
+                        </button>
 
-</body>
+                        <!-- Liste déroulante des variantes -->
+                        <div class="collapse mt-2" th:id="'variantes-' + ${produit.id}">
+                            <div class="card card-body">
+                                <ul class="list-unstyled mb-0">
+                                    <li th:each="variante : ${produit.variantes}" class="mb-1">
+                                                <span class="badge"
+                                                      th:style="'background-color: ' + ${variante.couleur.codeHexadecimal}"
+                                                      th:text="${variante.couleur.nom}"></span>
+                                        <span class="badge bg-secondary" th:text="${variante.taille.nom}"></span>
+                                        <small class="text-muted">
+                                            (Stock: <span th:text="${variante.stock}"></span>)
+                                        </small>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="text-center">
+
+                        <!-- Si le produit a au moins une image -->
+                        <img th:if="${!produit.images.isEmpty()}"
+                             th:src="@{/${produit.images[0].chemin}}"
+                             th:alt="${produit.nom}"
+                             class="img-thumbnail"
+                             style="max-width: 80px; max-height: 80px; object-fit: cover;"
+                             onerror="this.src='/img/placeholder.png'">
+
+                        <!-- Sinon image par défaut -->
+                        <img th:if="${produit.images.isEmpty()}"
+                             th:src="@{/img/placeholder.png}"
+                             alt="Pas d'image"
+                             class="img-thumbnail"
+                             style="max-width: 80px; max-height: 80px; object-fit: cover;">
+                    </td>
+                    <td class="text-center">
+                                <span th:if="${produit.avis.size() > 0}"
+                                      class="badge bg-warning text-dark">
+                                    <i class="bi bi-star-fill"></i>
+                                    <span th:text="${produit.avis.size()}"></span> avis
+                                </span>
+                        <span th:if="${produit.avis.size() == 0}"
+                              class="badge bg-secondary">
+                                    Aucun avis
+                                </span>
+                    </td>
+                    <td>
+                        <a href="" class="btn btn-primary">Afficher</a>
+                        <a href="" class="btn btn-warning">Modifier</a>
+                        <a href="" class="btn btn-sm btn-danger">Supprimer</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+</div>
+
 </html>
