@@ -63,21 +63,9 @@
                         </div>
                     </td>
                     <td class="text-center">
-
+                    <div th:text="${produit.images[0].chemin}"></div>
                         <!-- Si le produit a au moins une image -->
-                        <img th:if="${!produit.images.isEmpty()}"
-                             th:src="@{/${produit.images[0].chemin}}"
-                             th:alt="${produit.nom}"
-                             class="img-thumbnail"
-                             style="max-width: 80px; max-height: 80px; object-fit: cover;"
-                             onerror="this.src='/img/placeholder.png'">
 
-                        <!-- Sinon image par défaut -->
-                        <img th:if="${produit.images.isEmpty()}"
-                             th:src="@{/img/placeholder.png}"
-                             alt="Pas d'image"
-                             class="img-thumbnail"
-                             style="max-width: 80px; max-height: 80px; object-fit: cover;">
                     </td>
                     <td class="text-center">
                                 <span th:if="${produit.avis.size() > 0}"

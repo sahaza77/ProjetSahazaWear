@@ -3,6 +3,7 @@ package org.ldv.sahazawear.service
 import org.ldv.sahazawear.model.dao.*
 import org.ldv.sahazawear.model.entity.*
 import org.springframework.boot.CommandLineRunner
+import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Component
 import java.time.LocalDate
 
@@ -17,26 +18,56 @@ class DataInitializer(
     private val imageDAO: ImageDAO,
     private val avisDAO: AvisDAO,
     private val panierDAO: PanierDAO,
-    private val commandeDAO: CommandeDAO
+    private val commandeDAO: CommandeDAO,
+    private val passwordEncoder: PasswordEncoder
 ) : CommandLineRunner {
 
     override fun run(vararg args: String?) {
-        // Vérifie si la base contient déjà des données
-        if (produitDAO.count() > 0) {
+
+        // Empêche de réinitialiser à chaque lancement
+        if (roleDAO.count() > 0) {
             println("ℹ️ Données déjà présentes, initialisation ignorée.")
             return
         }
 
         println("🚀 Initialisation des données SahazaWear...")
 
-        // ========================================
-        // 1. CRÉATION DES RÔLES
-        // ========================================
-        println("📝 Création des rôles...")
-        val roleAdmin = Role(id = null, nom = "ADMIN")
-        val roleClient = Role(id = null, nom = "CLIENT")
-        roleDAO.saveAll(listOf(roleAdmin, roleClient))
+        // ========== 1. RÔLES ==========
+        val roleAdmin = roleDAO.save(Role(id = null, nom = "ADMIN"))
+        val roleClient = roleDAO.save(Role(id = null, nom = "CLIENT"))
 
+        // ========== 2. UTILISATEURS ==========
+        val admin = Utilisateur(
+            id = null,
+            nom = "Admin SahazaWear",
+            email = "admin@sahazawear.com",
+            mdp = passwordEncoder.encode("admin123"),
+            dateCreation = LocalDate.now(),
+            dateModification = LocalDate.now(),
+            role = roleAdmin
+        )
+
+        val client1 = Utilisateur(
+            id = null,
+            nom = "Thomas Dupont",
+            email = "thomas.dupont@email.com",
+            mdp = passwordEncoder.encode("client123"),
+            dateCreation = LocalDate.now().minusDays(30),
+            dateModification = LocalDate.now().minusDays(30),
+            role = roleClient
+        )
+
+        val client2 = Utilisateur(
+            id = null,
+            nom = "Julie Martin",
+            email = "julie.martin@email.com",
+            mdp = passwordEncoder.encode("client123"),
+            dateCreation = LocalDate.now().minusDays(15),
+            dateModification = LocalDate.now().minusDays(15),
+            role = roleClient
+        )
+
+        utilisateurDAO.saveAll(listOf(admin, client1, client2))
         // ========================================
         // 2. CRÉATION DES TAILLES
         // ========================================
@@ -58,42 +89,6 @@ class DataInitializer(
         val couleurBleu = Couleur(id = null, nom = "Bleu Marine", codeHexadecimal = "#1E3A8A")
         val couleurRouge = Couleur(id = null, nom = "Rouge", codeHexadecimal = "#DC2626")
         couleurDAO.saveAll(listOf(couleurNoir, couleurBlanc, couleurGris, couleurBleu, couleurRouge))
-
-        // ========================================
-        // 4. CRÉATION DES UTILISATEURS
-        // ========================================
-        println("👤 Création des utilisateurs...")
-        val admin = Utilisateur(
-            id = null,
-            nom = "Admin SahazaWear",
-            email = "admin@sahazawear.com",
-            mdp = "admin123", // À crypter en production !
-            dateCreation = LocalDate.now(),
-            dateModification = LocalDate.now(),
-            role = roleAdmin
-        )
-
-        val client1 = Utilisateur(
-            id = null,
-            nom = "Thomas Dupont",
-            email = "thomas.dupont@email.com",
-            mdp = "client123",
-            dateCreation = LocalDate.now().minusDays(30),
-            dateModification = LocalDate.now().minusDays(30),
-            role = roleClient
-        )
-
-        val client2 = Utilisateur(
-            id = null,
-            nom = "Julie Martin",
-            email = "julie.martin@email.com",
-            mdp = "client123",
-            dateCreation = LocalDate.now().minusDays(15),
-            dateModification = LocalDate.now().minusDays(15),
-            role = roleClient
-        )
-
-        utilisateurDAO.saveAll(listOf(admin, client1, client2))
 
         // ========================================
         // 5. CRÉATION DES PANIERS POUR LES UTILISATEURS

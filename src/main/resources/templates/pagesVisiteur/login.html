@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Connexion</title>
+</head>
+<body>
+
+<div class="col-8 col-lg-6 mx-auto p-2 mt-3">
+    <form action="/SahazaWear/login" method="post">
+        <h1>Connexion</h1>
+
+        <p th:if="${error}" class="alert alert-danger">
+            Identifiants incorrects. Veuillez réessayer.
+        </p>
+
+        <div class="mb-3">
+            <label for="username">Email</label>
+            <input required class="form-control" id="username" name="username" type="text">
+        </div>
+
+        <div class="mb-3">
+            <label for="password">Mot de passe</label>
+            <input required class="form-control" id="password" name="password" type="password">
+        </div>
+
+        <button class="btn btn-primary">Se connecter</button>
+    </form>
+</div>
+
+</body>
+</html>

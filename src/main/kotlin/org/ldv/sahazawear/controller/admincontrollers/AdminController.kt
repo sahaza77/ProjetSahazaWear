@@ -5,10 +5,10 @@ import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
 
 @Controller
-@RequestMapping("/sahazawear/admin")
+@RequestMapping("SahazaWear/admin/")
 class AdminController {
 
-    @GetMapping
+    @GetMapping("/dashboard")
     fun adminHome(): String {
         return "pageAdmin/dashboard"
     }

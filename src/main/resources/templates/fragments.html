@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<html lang="fr" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <body>
 
 <!-- HEADER -->
@@ -9,7 +9,7 @@
             <!-- Logo à gauche -->
             <div class="header-left">
                 <a th:href="@{/Sahazawear}">
-                    <img class="logo" th:src="@{img/logo_sahaza.png}" alt="SahazaWear">
+                    <img class="logo" th:src="@{/img/logo_sahaza.png}" alt="SahazaWear">
                 </a>
             </div>
 
@@ -35,13 +35,32 @@
             <nav class="header-right">
                 <a href="/produits" class="menu-link">PRODUITS</a>
                 <a href="/panier" class="menu-link">PANIER</a>
-                <a href="/inscription" class="menu-link">COMPTE</a>
+
+                <!-- Affichage conditionnel selon l'état de connexion -->
+
+                <!-- Si NON connecté : afficher Login et Inscription -->
+                <div sec:authorize="!isAuthenticated()">
+                    <a th:href="@{/SahazaWear/login}" class="menu-link">LOGIN</a>
+                    <a th:href="@{/inscription}" class="menu-link">INSCRIPTION</a>
+                </div>
+
+                <!-- Si connecté : afficher Profil/Mon Compte et Logout -->
+                <div sec:authorize="isAuthenticated()">
+                    <a th:href="@{/SahazaWear/profil}" class="menu-link">MON COMPTE</a>
+
+                    <!-- Lien Administration visible uniquement pour les ADMIN -->
+                    <a sec:authorize="hasRole('ADMIN')" th:href="@{/SahazaWear/admin/dashboard}" class="menu-link">ADMINISTRATION</a>
+
+                    <!-- Formulaire de logout -->
+                    <form th:action="@{/logout}" method="post" style="display: inline;">
+                        <button type="submit" class="btn btn-outline-primary me-2">LOGOUT</button>
+                    </form>
+                </div>
             </nav>
         </div>
     </header>
 </div>
 
-<!-- FOOTER -->
 <!-- FOOTER -->
 <div th:fragment="footer">
     <footer>

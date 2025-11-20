@@ -1,30 +1,33 @@
 package org.ldv.sahazawear.controller
 
 import org.springframework.stereotype.Controller
+import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.RequestParam
+import org.springframework.security.core.Authentication
+
 
 @Controller
 class MainController {
 
     /**
-     * Méthode permettant d'afficher la page d'accueil du site SahazaWear.
-     * @return le nom du template à afficher (sans .html)
+     * Page d'accueil
      */
     @GetMapping("/Sahazawear")
     fun home(): String {
-        return "index"  // <-- charge index.html depuis src/main/resources/templates
+        return "index"
     }
+
     /**
-     * Méthode permettant d'afficher la page "À propos".
-     * @return le chemin vers le template (dans le dossier pagesVisiteur)
+     * Page À propos
      */
     @GetMapping("/a-propos")
     fun aPropos(): String {
-        return "pagesVisiteur/a-propos"  // <-- charge pagesVisiteur/a-propos.html
+        return "pagesVisiteur/a-propos"
     }
+
     /**
-     * Méthode permettant d'afficher la page de contact.
-     * @return le chemin vers le template
+     * Page Contact
      */
     @GetMapping("/contact")
     fun contact(): String {
@@ -32,8 +35,7 @@ class MainController {
     }
 
     /**
-     * Méthode permettant d'afficher la page d'inscription.
-     * @return le chemin vers le template
+     * Page Inscription
      */
     @GetMapping("/inscription")
     fun inscription(): String {
@@ -41,8 +43,7 @@ class MainController {
     }
 
     /**
-     * Méthode permettant d'afficher la page produits.
-     * @return le chemin vers le template
+     * Page Produits
      */
     @GetMapping("/produits")
     fun produits(): String {
@@ -50,11 +51,32 @@ class MainController {
     }
 
     /**
-     * Méthode permettant d'afficher la politique de confidentialité (RGPD).
-     * @return le chemin vers le template
+     * Page RGPD
      */
     @GetMapping("/rgpd")
     fun rgpd(): String {
         return "pagesVisiteur/rgpd"
+    }
+
+    /**
+     * Page Login personnalisée
+     */
+    @GetMapping("/SahazaWear/login")
+    fun login(@RequestParam(required = false) error: Boolean?, model: Model): String {
+        model.addAttribute("error", error == true)
+        return "pagesVisiteur/login"
+    }
+    @GetMapping("/SahazaWear/profil")
+    fun profile(authentication: Authentication): String {
+
+        val roles = authentication.authorities.map { it.authority }
+
+        // Si admin → redirection vers dashboard admin
+        if ("ROLE_ADMIN" in roles) {
+            return "redirect:/SahazaWear/admin/dashboard"
+        }
+
+        // Sinon afficher la page profil client
+        return "pagesClient/profile"
     }
 }
