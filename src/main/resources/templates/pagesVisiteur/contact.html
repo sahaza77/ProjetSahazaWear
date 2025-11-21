@@ -18,6 +18,8 @@
             <div class="contact-form-section">
                 <h2>Envoyez-nous un message</h2>
                 <form class="contact-form" action="/contact" method="POST">
+                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+
                     <div class="form-group">
                         <label for="nom">Nom complet *</label>
                         <input type="text" id="nom" name="nom" required placeholder="Votre nom">

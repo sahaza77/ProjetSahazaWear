@@ -38,4 +38,12 @@ class Produit(
     @OneToMany(mappedBy = "produit", cascade = [CascadeType.ALL], orphanRemoval = true)
     var avis: MutableList<Avis> = mutableListOf()
     // =========================================
-)
+) {
+    fun getCheminImagePrincipale(): String{
+        var imgPrincipale = images.find {it.estPrincipale }?.chemin
+        if (imgPrincipale == null){
+            return "immg/produits/defaut.jpg"
+        }
+        return imgPrincipale
+    }
+}

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html th:replace="base :: html" lang="fr" xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="content">
+    <main class="py-5">
+        <div class="container">
+            <h1 class="mb-5 text-center" th:text="${produit.nom}"></h1>
+            <div class="row">
+                <div class="col-">
+                    <img th:src="${produit.getCheminImagePrincipale()}" alt="">
+                </div>
+                <div class="col">
+                    <ul>
+                        <li>Prix : <span th:text="${produit.nom}"></span> </li>
+                        <li>Catégorie : <span th:text="${produit.categorie}"></span> </li>
+                    </ul>
+                    <div class="btn-group">
+                        <a href="/sahazawear/admin/produits" class="btn btn-secondary">Retour</a>
+                        <a href=" " class="btn btn-primary">Modifer</a>
+                        <a href=" " class="btn btn-danger">Supprimer</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+</html>

@@ -1,10 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<html th:replace="base :: html" lang="fr" xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="content">
+    <main class="py-5">
+        <div class="container">
+            <h1 class="mb-5 text-center" >Création d'un nouveau produit</h1>
+            <form th:object="${produit}" action="" method="post">
+            <div class="row">
+            <div class="my-2 mx-auto col-4">
+                <div class="mb-2">
+                    <label for="inputNom">Saisir le nom :</label>
+                    <input id="inputNom" th:field="*{nom}" type="text" class="form-control">
+                </div>
+                <div class="mb-2">
+                    <label for="description">Saisir la description :</label>
+                    <textarea class="form-control" th:field="*{description}" id="description" cols="30" rows="10"></textarea>
+                </div>
+                <div class="my-2 mx-auto col-4">
+                    <div class="mb-2">
+                        <label for="inputPrix">Saisir le prix :</label>
+                        <input id="inputPrix" th:field="*{prix}" type="number" step="0.01" class="form-control">
+                    </div>
+                    <div class="mb-2">
+                        <label for="categorie">Choisir la catégorie :</label>
+                        <select th:field="*{categorie}" id="categorie" class="form-select">
+                            <option disabled value="">Choisir une catégorie</option>
+                            <option th:each="uneCategorie :${categorie}" th:value="${uneCategorie.id}" th:text="${uneCategorie.nom}"></option>
+                        </select>
+                    </div>
+                <button type=submit class="btn btn-primary">Envoyer</button>
+                <a th:href ="@{/sahazawear/admin/produits}" type=submit class="btn btn-secondary">Retour</a>
+            </div>
+            </div>
+        </form>
 
-</body>
+        </div>
+    </main>
+</div>
+
 </html>

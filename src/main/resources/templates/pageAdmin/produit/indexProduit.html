@@ -5,7 +5,7 @@
         <div class="container">
             <h1 class="nb-5 text-center"> Gestion des produits</h1>
             <p> Nombre de produits : <span th:text="${produits.size()}"></span> </p>
-            <a href="" class="btn btn-success">+ Produit</a>
+            <a href="/sahazawear/pageAdmin/produit/createProduit" class="btn btn-success">+ Produit</a>
             <table class="table table-striped">
                 <thead>
                 <tr>
@@ -79,7 +79,7 @@
                                 </span>
                     </td>
                     <td>
-                        <a href="" class="btn btn-primary">Afficher</a>
+                        <a th:href="@{'/sahazawear/admin/produits/' +${produit.id}}" class="btn btn-primary">Afficher</a>
                         <a href="" class="btn btn-warning">Modifier</a>
                         <a href="" class="btn btn-sm btn-danger">Supprimer</a>
                     </td>

@@ -53,6 +53,8 @@
                 <!-- Formulaire d'inscription -->
                 <div class="inscription-form-section">
                     <form class="inscription-form" action="/inscription" method="POST">
+                        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+
                         <h2>Vos informations</h2>
 
                         <div class="form-row">
