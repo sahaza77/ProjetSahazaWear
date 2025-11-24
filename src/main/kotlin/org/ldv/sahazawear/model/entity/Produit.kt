@@ -1,7 +1,7 @@
 package org.ldv.sahazawear.model.entity
 
 import jakarta.persistence.*
-import java.time.LocalDate
+import java.time.LocalDateTime
 
 @Entity
 class Produit(
@@ -23,10 +23,10 @@ class Produit(
     var categorie: String,
 
     @Column(nullable = false)
-    var dateCreation: LocalDate,
+    var dateCreation: LocalDateTime = LocalDateTime.now(),
 
     @Column(nullable = false)
-    var dateModification: LocalDate,
+    var dateModification: LocalDateTime = LocalDateTime.now(),
 
     // ========== NOUVELLES RELATIONS ==========
     @OneToMany(mappedBy = "produit", cascade = [CascadeType.ALL], orphanRemoval = true)
@@ -39,11 +39,12 @@ class Produit(
     var avis: MutableList<Avis> = mutableListOf()
     // =========================================
 ) {
-    fun getCheminImagePrincipale(): String{
-        var imgPrincipale = images.find {it.estPrincipale }?.chemin
-        if (imgPrincipale == null){
-            return "immg/produits/defaut.jpg"
-        }
-        return imgPrincipale
+    fun getCheminImagePrincipale(): String {
+        val imgPrincipale = images.find { it.estPrincipale }?.chemin
+        return imgPrincipale ?: "img/produits/defaut.jpg"
+    }
+    @PreUpdate
+    fun preUpdate() {
+        dateModification = LocalDateTime.now()
     }
 }

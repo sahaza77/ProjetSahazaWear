@@ -121,8 +121,7 @@ class DataInitializer(
             description = "T-shirt basique en coton premium, parfait pour le quotidien. Coupe ajustée et confortable.",
             prix = 29.99,
             categorie = "T-shirts",
-            dateCreation = LocalDate.now().minusDays(60),
-            dateModification = LocalDate.now().minusDays(60)
+
         )
 
         val produit2 = Produit(
@@ -131,8 +130,7 @@ class DataInitializer(
             description = "Sweat à capuche streetwear avec logo brodé. Matière douce et chaude.",
             prix = 59.99,
             categorie = "Sweats",
-            dateCreation = LocalDate.now().minusDays(45),
-            dateModification = LocalDate.now().minusDays(45)
+
         )
 
         val produit3 = Produit(
@@ -141,8 +139,7 @@ class DataInitializer(
             description = "Jean slim moderne avec stretch pour plus de confort. Disponible en plusieurs couleurs.",
             prix = 79.99,
             categorie = "Pantalons",
-            dateCreation = LocalDate.now().minusDays(30),
-            dateModification = LocalDate.now().minusDays(30)
+
         )
 
         val produit4 = Produit(
@@ -151,8 +148,7 @@ class DataInitializer(
             description = "Casquette snapback avec logo SahazaWear brodé. Style urbain intemporel.",
             prix = 24.99,
             categorie = "Accessoires",
-            dateCreation = LocalDate.now().minusDays(20),
-            dateModification = LocalDate.now().minusDays(20)
+
         )
 
         val produit5 = Produit(
@@ -161,8 +157,7 @@ class DataInitializer(
             description = "Veste bomber élégante avec doublure satinée. Coupe moderne et confortable.",
             prix = 99.99,
             categorie = "Vestes",
-            dateCreation = LocalDate.now().minusDays(15),
-            dateModification = LocalDate.now().minusDays(15)
+
         )
 
         produitDAO.saveAll(listOf(produit1, produit2, produit3, produit4, produit5))
@@ -173,25 +168,25 @@ class DataInitializer(
         println("📷 Création des images...")
 
         val imagesProduit1 = listOf(
-            Image(id = null, chemin = "img/produits/tshirt-essential-noir.jpg", estPrincipale = true, produit = produit1),
-            Image(id = null, chemin = "img/produits/tshirt-essential-blanc.jpg", estPrincipale = false, produit = produit1)
+            Image(id = null, chemin = "img/produits/t-shirt_noir.jpg", estPrincipale = true, produit = produit1),
+            Image(id = null, chemin = "img/produits/t-shirt_blanc.jpg", estPrincipale = false, produit = produit1)
         )
 
         val imagesProduit2 = listOf(
-            Image(id = null, chemin = "img/produits/hoodie-urban-noir.jpg", estPrincipale = true, produit = produit2),
-            Image(id = null, chemin = "img/produits/hoodie-urban-gris.jpg", estPrincipale = false, produit = produit2)
+            Image(id = null, chemin = "img/produits/defaut.jpg", estPrincipale = true, produit = produit2),
+            Image(id = null, chemin = "img/produits/defaut.jpg", estPrincipale = false, produit = produit2)
         )
 
         val imagesProduit3 = listOf(
-            Image(id = null, chemin = "img/produits/jean-slim-bleu.jpg", estPrincipale = true, produit = produit3)
+            Image(id = null, chemin = "img/produits/defaut.jpg", estPrincipale = true, produit = produit3)
         )
 
         val imagesProduit4 = listOf(
-            Image(id = null, chemin = "img/produits/casquette-logo-noir.jpg", estPrincipale = true, produit = produit4)
+            Image(id = null, chemin = "img/produits/defaut.jpg", estPrincipale = true, produit = produit4)
         )
 
         val imagesProduit5 = listOf(
-            Image(id = null, chemin = "img/produits/veste-bomber-noir.jpg", estPrincipale = true, produit = produit5)
+            Image(id = null, chemin = "img/produits/defaut.jpg", estPrincipale = true, produit = produit5)
         )
 
         imageDAO.saveAll(imagesProduit1 + imagesProduit2 + imagesProduit3 + imagesProduit4 + imagesProduit5)

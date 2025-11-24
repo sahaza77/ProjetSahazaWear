@@ -1,10 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<html th:replace="base :: html" lang="fr" xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="content">
+    <main class="py-5">
+        <div class="container">
+            <h1 class="mb-5 text-center">Modification d'un produit</h1>
 
-</body>
+            <form  th:object="${produit}" th:action="@{/sahazawear/admin/produits/update}" method="post">
+
+                <!-- TOKEN CSRF (uniquement si CSRF est activé !) -->
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+                <input required readonly type="hidden" th:field="*{id}">
+                <div class="row">
+                    <div class="my-2 mx-auto col-4">
+
+                        <div class="mb-2">
+                            <label for="inputNom">Saisir le nom :</label>
+                            <input id="inputNom" th:field="*{nom}" type="text" class="form-control">
+                        </div>
+                        <div class="mb-2">
+                            <label for="inputCategorie">Saisir la categorie :</label>
+                            <input id="inputCategorie" th:field="*{categorie}" type="text" class="form-control">
+                        </div>
+
+                        <div class="mb-2">
+                            <label for="description">Saisir la description :</label>
+                            <textarea class="form-control" th:field="*{description}" id="description" rows="5"></textarea>
+                        </div>
+
+                        <div class="mb-2">
+                            <label for="inputPrix">Saisir le prix :</label>
+                            <input id="inputPrix" th:field="*{prix}" type="number" step="0.01" class="form-control">
+                        </div>
+
+                        <button type="submit" class="btn btn-primary mt-2">Envoyer</button>
+                        <a th:href="@{/sahazawear/admin/produits}" class="btn btn-secondary mt-2">Retour</a>
+
+                    </div>
+                </div>
+            </form>
+        </div>
+    </main>
+</div>
 </html>

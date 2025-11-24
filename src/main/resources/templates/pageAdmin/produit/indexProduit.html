@@ -5,7 +5,8 @@
         <div class="container">
             <h1 class="nb-5 text-center"> Gestion des produits</h1>
             <p> Nombre de produits : <span th:text="${produits.size()}"></span> </p>
-            <a href="/sahazawear/pageAdmin/produit/createProduit" class="btn btn-success">+ Produit</a>
+            <div class="alert alert-success my-1" th:if="${msg}" th:text="${msg}"></div>
+            <a href="/sahazawear/admin/produits/create" class="btn btn-success">+ Produit</a>
             <table class="table table-striped">
                 <thead>
                 <tr>
@@ -63,8 +64,20 @@
                         </div>
                     </td>
                     <td class="text-center">
-                    <div th:text="${produit.images[0].chemin}"></div>
-                        <!-- Si le produit a au moins une image -->
+
+                        <!-- Image principale si elle existe -->
+                        <img th:if="${produit.images.size() > 0}"
+                             th:src="@{/${produit.cheminImagePrincipale()}}"
+                             alt="Image produit"
+                             class="img-thumbnail"
+                             style="max-width: 80px; max-height: 80px; object-fit: cover;">
+
+                        <!-- Image par défaut sinon -->
+                        <img th:if="${produit.images.size() == 0}"
+                             th:src="@{/img/produits/defaut.jpg}"
+                             alt="Image par défaut"
+                             class="img-thumbnail"
+                             style="max-width: 80px; max-height: 80px; object-fit: cover;">
 
                     </td>
                     <td class="text-center">
@@ -80,8 +93,11 @@
                     </td>
                     <td>
                         <a th:href="@{'/sahazawear/admin/produits/' +${produit.id}}" class="btn btn-primary">Afficher</a>
-                        <a href="" class="btn btn-warning">Modifier</a>
-                        <a href="" class="btn btn-sm btn-danger">Supprimer</a>
+                        <a th:href="@{'/sahazawear/admin/produits/edit/' +${produit.id}}" class="btn btn-warning">Modifier</a>
+                        <form th:action="@{'/sahazawear/admin/produits/delete'}" method="post">
+                            <input type="hidden" th:value="${produit.id}" name="id">
+                        <button onclick="return confirm('Supprimer cet article ?');" type="submit" class="btn btn-sm btn-danger">Supprimer</button>
+                        </form>
                     </td>
                 </tr>
                 </tbody>

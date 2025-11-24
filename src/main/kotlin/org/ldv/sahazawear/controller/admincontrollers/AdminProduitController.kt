@@ -6,7 +6,11 @@ import org.ldv.sahazawear.model.entity.Produit
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.ModelAttribute
 import org.springframework.web.bind.annotation.PathVariable
+import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.RequestParam
+import org.springframework.web.servlet.mvc.support.RedirectAttributes
 import java.time.LocalDate
 
 @Controller
@@ -29,11 +33,43 @@ class AdminProduitController(
         return "pageAdmin/produit/showProduit"
     }
     @GetMapping("/sahazawear/admin/produits/create")
-    fun create(model: Model): String{
-        val nouveauProduit = Produit(id = null, nom = "", description = "", prix = 1.0, categorie = "", dateCreation = LocalDate.now(), dateModification = LocalDate.now())
-        val couleur = couleurDAO.findAll()
-        model.addAttribute("couleur",couleur)
-        model.addAttribute("produit",nouveauProduit)
+    fun create(model: Model): String {
+        val nouveauProduit = Produit(
+            id = null,
+            nom = "",
+            description = "",
+            prix = 1.0,
+            categorie = "",
+
+        )
+        model.addAttribute("produit", nouveauProduit)
         return "pageAdmin/produit/createProduit"
+    }
+
+@PostMapping("/sahazawear/admin/produits")
+fun store (@ModelAttribute produit: Produit, redirectAttributes: RedirectAttributes): String{
+    produitDAO.save(produit)
+    redirectAttributes.addFlashAttribute("msg", "L'article a bien été crée")
+    return "redirect:/sahazawear/admin/produits"
+}
+
+@GetMapping("/sahazawear/admin/produits/edit/{id}")
+fun edit (@PathVariable id:Long, model: Model): String {
+    val produit = produitDAO.findById(id).orElseThrow()
+    model.addAttribute("produit", produit)
+    return "pageAdmin/produit/editProduit"
+}
+    @PostMapping("/sahazawear/admin/produits/update")
+    fun update (@ModelAttribute produit: Produit, redirectAttributes: RedirectAttributes):String{
+        produitDAO.save(produit)
+        redirectAttributes.addFlashAttribute("msg","L'article ${produit.nom} est modifier.")
+        return "redirect:/sahazawear/admin/produits"
+    }
+
+    @PostMapping("/sahazawear/admin/produits/delete")
+    fun delete (@RequestParam id: Long, redirectAttributes: RedirectAttributes):String{
+        produitDAO.deleteById(id)
+        redirectAttributes.addFlashAttribute("msg", "L'article est supprimer")
+        return "redirect:/sahazawear/admin/produits"
     }
 }
