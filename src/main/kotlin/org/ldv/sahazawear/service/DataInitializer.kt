@@ -49,8 +49,8 @@ class DataInitializer(
 
         val client1 = Utilisateur(
             id = null,
-            nom = "Thomas Dupont",
-            email = "thomas.dupont@email.com",
+            nom = "Client  Essai",
+            email = "client.essai@email.com",
             mdp = passwordEncoder.encode("client123"),
             dateCreation = LocalDate.now().minusDays(30),
             dateModification = LocalDate.now().minusDays(30),
@@ -59,8 +59,8 @@ class DataInitializer(
 
         val client2 = Utilisateur(
             id = null,
-            nom = "Julie Martin",
-            email = "julie.martin@email.com",
+            nom = "Client Test",
+            email = "client.test@email.com",
             mdp = passwordEncoder.encode("client123"),
             dateCreation = LocalDate.now().minusDays(15),
             dateModification = LocalDate.now().minusDays(15),
@@ -168,25 +168,25 @@ class DataInitializer(
         println("📷 Création des images...")
 
         val imagesProduit1 = listOf(
-            Image(id = null, chemin = "img/produits/t-shirt_noir.jpg", estPrincipale = true, produit = produit1),
-            Image(id = null, chemin = "img/produits/t-shirt_blanc.jpg", estPrincipale = false, produit = produit1)
+            Image(id = null, chemin = "/img/produits/t-shirt_noir.jpg", estPrincipale = true, produit = produit1),
+            Image(id = null, chemin = "/img/produits/t-shirt_blanc.jpg", estPrincipale = false, produit = produit1)
         )
 
         val imagesProduit2 = listOf(
-            Image(id = null, chemin = "img/produits/defaut.jpg", estPrincipale = true, produit = produit2),
-            Image(id = null, chemin = "img/produits/defaut.jpg", estPrincipale = false, produit = produit2)
+            Image(id = null, chemin = "/img/produits/hoodie-blanc.jpg", estPrincipale = true, produit = produit2),
+            Image(id = null, chemin = "/img/produits/hoodie-noir.jpg", estPrincipale = false, produit = produit2)
         )
 
         val imagesProduit3 = listOf(
-            Image(id = null, chemin = "img/produits/defaut.jpg", estPrincipale = true, produit = produit3)
+            Image(id = null, chemin = "/img/produits/jean-noir.png", estPrincipale = true, produit = produit3)
         )
 
         val imagesProduit4 = listOf(
-            Image(id = null, chemin = "img/produits/defaut.jpg", estPrincipale = true, produit = produit4)
+            Image(id = null, chemin = "/img/produits/casquette.jpg", estPrincipale = true, produit = produit4)
         )
 
         val imagesProduit5 = listOf(
-            Image(id = null, chemin = "img/produits/defaut.jpg", estPrincipale = true, produit = produit5)
+            Image(id = null, chemin = "/img/produits/veste.png", estPrincipale = true, produit = produit5)
         )
 
         imageDAO.saveAll(imagesProduit1 + imagesProduit2 + imagesProduit3 + imagesProduit4 + imagesProduit5)

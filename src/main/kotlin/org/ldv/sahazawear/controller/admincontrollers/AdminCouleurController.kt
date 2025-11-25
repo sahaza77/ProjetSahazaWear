@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
 
 @Controller
-@RequestMapping("/sahazawear/admin/couleurs")
+@RequestMapping("/SahazaWear/admin/couleurs")
 class AdminCouleurController(
     private val couleurDAO: CouleurDAO
 ) {

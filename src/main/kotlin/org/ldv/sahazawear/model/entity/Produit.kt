@@ -39,7 +39,7 @@ class Produit(
     var avis: MutableList<Avis> = mutableListOf()
     // =========================================
 ) {
-    fun getCheminImagePrincipale(): String {
+    fun cheminImagePrincipale(): String {
         val imgPrincipale = images.find { it.estPrincipale }?.chemin
         return imgPrincipale ?: "img/produits/defaut.jpg"
     }

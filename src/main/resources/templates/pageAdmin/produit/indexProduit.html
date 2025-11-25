@@ -1,12 +1,19 @@
 <!DOCTYPE html>
 <html th:replace="base :: html" lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Gestion des produits - SahazaWear</title>
+</head>
+<body>
+
 <div th:fragment="content">
+
     <main class="py-5">
         <div class="container">
-            <h1 class="nb-5 text-center"> Gestion des produits</h1>
-            <p> Nombre de produits : <span th:text="${produits.size()}"></span> </p>
+            <h1 class="nb-5 text-center">Gestion des produits</h1>
+            <p>Nombre de produits : <span th:text="${produits.size()}"></span></p>
             <div class="alert alert-success my-1" th:if="${msg}" th:text="${msg}"></div>
-            <a href="/sahazawear/admin/produits/create" class="btn btn-success">+ Produit</a>
+            <a href="/SahazaWear/admin/produits/create" class="btn btn-success">+ Produit</a>
+
             <table class="table table-striped">
                 <thead>
                 <tr>
@@ -27,33 +34,28 @@
                 <tr th:each="produit : ${produits}">
                     <td th:text="${produit.id}"></td>
                     <td th:text="${produit.nom}"></td>
-                    <!-- DESCRIPTION (tronquée) -->
                     <td>
                         <span th:text="${#strings.abbreviate(produit.description, 80)}"></span>
                     </td>
-                    <!-- PRIX -->
                     <td>
                         <span class="badge bg-success" th:text="${#numbers.formatDecimal(produit.prix, 1, 2)} + ' €'"></span>
                     </td>
                     <td th:text="${produit.categorie}"></td>
                     <td th:text="${produit.dateCreation}"></td>
                     <td th:text="${produit.dateModification}"></td>
-                    <!-- VARIANTES (Affichage amélioré) -->
                     <td>
                         <span class="badge bg-info text-dark" th:text="${produit.variantes.size()} + ' variante(s)'"></span>
                         <button class="btn btn-sm btn-outline-secondary" type="button"
                                 th:attr="data-bs-toggle='collapse', data-bs-target='#variantes-' + ${produit.id}">
                             <i class="bi bi-eye"></i> Voir
                         </button>
-
-                        <!-- Liste déroulante des variantes -->
                         <div class="collapse mt-2" th:id="'variantes-' + ${produit.id}">
                             <div class="card card-body">
                                 <ul class="list-unstyled mb-0">
                                     <li th:each="variante : ${produit.variantes}" class="mb-1">
-                                                <span class="badge"
-                                                      th:style="'background-color: ' + ${variante.couleur.codeHexadecimal}"
-                                                      th:text="${variante.couleur.nom}"></span>
+                                        <span class="badge"
+                                              th:style="'background-color: ' + ${variante.couleur.codeHexadecimal}"
+                                              th:text="${variante.couleur.nom}"></span>
                                         <span class="badge bg-secondary" th:text="${variante.taille.nom}"></span>
                                         <small class="text-muted">
                                             (Stock: <span th:text="${variante.stock}"></span>)
@@ -64,39 +66,34 @@
                         </div>
                     </td>
                     <td class="text-center">
-
-                        <!-- Image principale si elle existe -->
                         <img th:if="${produit.images.size() > 0}"
-                             th:src="@{/${produit.cheminImagePrincipale()}}"
+                             th:src="@{${produit.cheminImagePrincipale()}}"
                              alt="Image produit"
                              class="img-thumbnail"
                              style="max-width: 80px; max-height: 80px; object-fit: cover;">
-
-                        <!-- Image par défaut sinon -->
                         <img th:if="${produit.images.size() == 0}"
                              th:src="@{/img/produits/defaut.jpg}"
                              alt="Image par défaut"
                              class="img-thumbnail"
                              style="max-width: 80px; max-height: 80px; object-fit: cover;">
-
                     </td>
                     <td class="text-center">
-                                <span th:if="${produit.avis.size() > 0}"
-                                      class="badge bg-warning text-dark">
-                                    <i class="bi bi-star-fill"></i>
-                                    <span th:text="${produit.avis.size()}"></span> avis
-                                </span>
+                        <span th:if="${produit.avis.size() > 0}"
+                              class="badge bg-warning text-dark">
+                            <i class="bi bi-star-fill"></i>
+                            <span th:text="${produit.avis.size()}"></span> avis
+                        </span>
                         <span th:if="${produit.avis.size() == 0}"
-                              class="badge bg-secondary">
-                                    Aucun avis
-                                </span>
+                              class="badge bg-secondary">Aucun avis</span>
                     </td>
                     <td>
-                        <a th:href="@{'/sahazawear/admin/produits/' +${produit.id}}" class="btn btn-primary">Afficher</a>
-                        <a th:href="@{'/sahazawear/admin/produits/edit/' +${produit.id}}" class="btn btn-warning">Modifier</a>
-                        <form th:action="@{'/sahazawear/admin/produits/delete'}" method="post">
+                        <a th:href="@{'/SahazaWear/admin/produits/' +${produit.id}}" class="btn btn-primary">Afficher</a>
+                        <a th:href="@{'/SahazaWear/admin/produits/edit/' +${produit.id}}" class="btn btn-warning">Modifier</a>
+                        <form th:action="@{'/SahazaWear/admin/produits/delete'}" method="post" style="display: inline;">
+                            <!-- ✅ TOKEN CSRF -->
+                            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
                             <input type="hidden" th:value="${produit.id}" name="id">
-                        <button onclick="return confirm('Supprimer cet article ?');" type="submit" class="btn btn-sm btn-danger">Supprimer</button>
+                            <button onclick="return confirm('Supprimer cet article ?');" type="submit" class="btn btn-sm btn-danger">Supprimer</button>
                         </form>
                     </td>
                 </tr>
@@ -105,5 +102,5 @@
         </div>
     </main>
 </div>
-
+</body>
 </html>

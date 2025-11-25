@@ -19,20 +19,20 @@ class AdminProduitController(
     val couleurDAO: CouleurDAO
 ) {
 
-    @GetMapping("/sahazawear/admin/produits")
+    @GetMapping("/SahazaWear/admin/produits")
     fun index(model: Model): String {
         var produitsList = produitDAO.findAll()
         model.addAttribute("produits", produitsList)
 
         return "pageAdmin/produit/indexProduit"
     }
-    @GetMapping("/sahazawear/admin/produits/{id}")
+    @GetMapping("/SahazaWear/admin/produits/{id}")
     fun show (@PathVariable id:Long, model: Model):String{
         val unProduit = produitDAO.findById(id).orElseThrow()
         model.addAttribute("produit",unProduit)
         return "pageAdmin/produit/showProduit"
     }
-    @GetMapping("/sahazawear/admin/produits/create")
+    @GetMapping("/SahazaWear/admin/produits/create")
     fun create(model: Model): String {
         val nouveauProduit = Produit(
             id = null,
@@ -46,30 +46,30 @@ class AdminProduitController(
         return "pageAdmin/produit/createProduit"
     }
 
-@PostMapping("/sahazawear/admin/produits")
+@PostMapping("/SahazaWear/admin/produits")
 fun store (@ModelAttribute produit: Produit, redirectAttributes: RedirectAttributes): String{
     produitDAO.save(produit)
     redirectAttributes.addFlashAttribute("msg", "L'article a bien été crée")
-    return "redirect:/sahazawear/admin/produits"
+    return "redirect:/SahazaWear/admin/produits"
 }
 
-@GetMapping("/sahazawear/admin/produits/edit/{id}")
+@GetMapping("/SahazaWear/admin/produits/edit/{id}")
 fun edit (@PathVariable id:Long, model: Model): String {
     val produit = produitDAO.findById(id).orElseThrow()
     model.addAttribute("produit", produit)
     return "pageAdmin/produit/editProduit"
 }
-    @PostMapping("/sahazawear/admin/produits/update")
+    @PostMapping("/SahazaWear/admin/produits/update")
     fun update (@ModelAttribute produit: Produit, redirectAttributes: RedirectAttributes):String{
         produitDAO.save(produit)
         redirectAttributes.addFlashAttribute("msg","L'article ${produit.nom} est modifier.")
-        return "redirect:/sahazawear/admin/produits"
+        return "redirect:/SahazaWear/admin/produits"
     }
 
-    @PostMapping("/sahazawear/admin/produits/delete")
+    @PostMapping("/SahazaWear/admin/produits/delete")
     fun delete (@RequestParam id: Long, redirectAttributes: RedirectAttributes):String{
         produitDAO.deleteById(id)
         redirectAttributes.addFlashAttribute("msg", "L'article est supprimer")
-        return "redirect:/sahazawear/admin/produits"
+        return "redirect:/SahazaWear/admin/produits"
     }
 }

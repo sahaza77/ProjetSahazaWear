@@ -13,7 +13,7 @@ class MainController {
     /**
      * Page d'accueil
      */
-    @GetMapping("/Sahazawear")
+    @GetMapping("/SahazaWear")
     fun home(): String {
         return "index"
     }
