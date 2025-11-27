@@ -1439,4 +1439,144 @@ footer {
             height: 300px;
         }
     }
+    /* ============================================
+   DASHBOARD ADMIN
+   ============================================ */
+
+    .admin-dashboard {
+        background: linear-gradient(135deg, var(--sable) 0%, #e8dcc8 100%);
+        min-height: 100vh;
+        padding-bottom: 50px;
+    }
+
+    .dashboard-header h1 {
+        font-family: 'Poppins', sans-serif;
+        color: var(--bleu-fonce);
+        font-weight: 700;
+    }
+
+    /* Cartes de statistiques */
+    .stat-card {
+        background: linear-gradient(135deg, var(--bleu-fonce) 0%, #2d3e50 100%);
+        color: var(--blanc);
+        padding: 30px;
+        border-radius: 12px;
+        text-align: center;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .stat-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 8px 25px rgba(30, 42, 56, 0.3);
+    }
+
+    .stat-icon {
+        font-size: 3rem;
+        margin-bottom: 15px;
+    }
+
+    .stat-card h3 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin: 10px 0;
+        color: var(--camel);
+    }
+
+    .stat-card p {
+        font-size: 1.1rem;
+        margin: 0;
+        opacity: 0.9;
+    }
+
+    /* Cartes d'administration */
+    .admin-card {
+        background-color: var(--blanc);
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .admin-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 8px 25px rgba(199, 154, 109, 0.3);
+    }
+
+    .admin-card-icon {
+        font-size: 3.5rem;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .admin-card h3 {
+        font-family: 'Poppins', sans-serif;
+        color: var(--bleu-fonce);
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+
+    .admin-card p {
+        color: #666;
+        text-align: center;
+        margin-bottom: 25px;
+        flex-grow: 1;
+    }
+
+    .admin-card-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .admin-card-actions .btn {
+        width: 100%;
+        padding: 12px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+    }
+
+    .admin-card-actions .btn:hover {
+        transform: translateY(-2px);
+    }
+
+    /* Actions rapides */
+    .quick-actions h2 {
+        font-family: 'Poppins', sans-serif;
+        color: var(--bleu-fonce);
+        font-weight: 600;
+    }
+
+    .quick-actions .btn-lg {
+        padding: 15px 30px;
+        font-weight: 600;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+    }
+
+    .quick-actions .btn-lg:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .stat-card {
+            margin-bottom: 20px;
+        }
+
+        .admin-card-actions .btn {
+            font-size: 0.9rem;
+            padding: 10px;
+        }
+
+        .quick-actions .btn-lg {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+    }
 }

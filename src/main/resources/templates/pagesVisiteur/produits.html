@@ -111,18 +111,19 @@
                 <!-- Grille produits (à remplir dynamiquement avec Thymeleaf) -->
                 <div class="produits-grid">
                     <!-- Exemple de carte produit (placeholder) -->
-                    <div class="produit-card">
+                    <div th:each="unProduit : ${produits}" class="produit-card">
                         <div class="produit-image">
                             <div class="image-placeholder">
+                                <img th:src="@{${unProduit.cheminImagePrincipale()}}" alt="">
                                 <span>Photo</span>
                             </div>
                             <span class="produit-badge nouveau">Nouveau</span>
                         </div>
                         <div class="produit-info">
-                            <h3 class="produit-nom">Hoodie Essential</h3>
+                            <h3 th:text="${unProduit.nom}" class="produit-nom">Hoodie Essential</h3>
                             <p class="produit-categorie">Sweats</p>
                             <p class="produit-prix">49,99 €</p>
-                            <button class="btn-ajouter-panier">Ajouter au panier</button>
+                            <a th:href="@{${'/SahazaWear/admin/produits/'+unProduit.id}}" class="btn-ajouter-panier">Ajouter au panier</a>
                         </div>
                     </div>
 

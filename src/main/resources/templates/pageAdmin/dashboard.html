@@ -1,11 +1,219 @@
 <!DOCTYPE html>
 <html th:replace="base :: html" lang="fr" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Gestion des produits - SahazaWear</title>
+    <meta charset="UTF-8">
+    <title>Dashboard Admin - SahazaWear</title>
 </head>
 <body>
 
 <div th:fragment="content">
+    <!-- Header -->
+
+    <main class="admin-dashboard">
+        <div class="container py-5">
+            <!-- En-tête du dashboard -->
+            <div class="dashboard-header text-center mb-5">
+                <h1 class="display-4">📊 Dashboard Administrateur</h1>
+                <p class="lead text-muted">Bienvenue dans votre espace d'administration SahazaWear</p>
+            </div>
+
+            <!-- Statistiques rapides -->
+            <div class="row mb-5">
+                <div class="col-md-3">
+                    <div class="stat-card">
+                        <div class="stat-icon">📦</div>
+                        <h3 th:text="${produits != null ? produits.size() : 0}">0</h3>
+                        <p>Produits</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card">
+                        <div class="stat-icon">👥</div>
+                        <h3 th:text="${utilisateurs != null ? utilisateurs.size() : 0}">0</h3>
+                        <p>Utilisateurs</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card">
+                        <div class="stat-icon">🛒</div>
+                        <h3 th:text="${commandes != null ? commandes.size() : 0}">0</h3>
+                        <p>Commandes</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card">
+                        <div class="stat-icon">⭐</div>
+                        <h3 th:text="${avis != null ? avis.size() : 0}">0</h3>
+                        <p>Avis</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sections d'administration -->
+            <div class="row g-4">
+                <!-- Gestion des produits -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="admin-card">
+                        <div class="admin-card-icon">👕</div>
+                        <h3>Gestion des Produits</h3>
+                        <p>Gérer le catalogue de produits</p>
+                        <div class="admin-card-actions">
+                            <a th:href="@{/SahazaWear/admin/produits}" class="btn btn-primary">
+                                <i class="bi bi-list-ul"></i> Tous les produits
+                            </a>
+                            <a th:href="@{/SahazaWear/admin/produits/create}" class="btn btn-success">
+                                <i class="bi bi-plus-circle"></i> Nouveau produit
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gestion des utilisateurs -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="admin-card">
+                        <div class="admin-card-icon">👥</div>
+                        <h3>Gestion des Utilisateurs</h3>
+                        <p>Gérer les comptes clients et admins</p>
+                        <div class="admin-card-actions">
+                            <a th:href="@{/SahazaWear/admin/utilisateurs}" class="btn btn-primary">
+                                <i class="bi bi-people"></i> Tous les utilisateurs
+                            </a>
+                            <a th:href="@{/SahazaWear/admin/utilisateurs/create}" class="btn btn-success">
+                                <i class="bi bi-person-plus"></i> Nouvel utilisateur
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gestion des commandes -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="admin-card">
+                        <div class="admin-card-icon">📦</div>
+                        <h3>Gestion des Commandes</h3>
+                        <p>Suivre et gérer les commandes</p>
+                        <div class="admin-card-actions">
+                            <a th:href="@{/SahazaWear/admin/commandes}" class="btn btn-primary">
+                                <i class="bi bi-box-seam"></i> Toutes les commandes
+                            </a>
+                            <a th:href="@{/SahazaWear/admin/commandes/en-cours}" class="btn btn-warning">
+                                <i class="bi bi-hourglass-split"></i> En cours
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gestion des catégories -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="admin-card">
+                        <div class="admin-card-icon">🏷️</div>
+                        <h3>Catégories</h3>
+                        <p>Organiser les catégories de produits</p>
+                        <div class="admin-card-actions">
+                            <a th:href="@{/SahazaWear/admin/categories}" class="btn btn-primary">
+                                <i class="bi bi-tags"></i> Gérer les catégories
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gestion des variantes -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="admin-card">
+                        <div class="admin-card-icon">🎨</div>
+                        <h3>Variantes</h3>
+                        <p>Gérer les tailles et couleurs</p>
+                        <div class="admin-card-actions">
+                            <a th:href="@{/SahazaWear/admin/tailles}" class="btn btn-primary">
+                                <i class="bi bi-rulers"></i> Tailles
+                            </a>
+                            <a th:href="@{/SahazaWear/admin/couleurs}" class="btn btn-primary">
+                                <i class="bi bi-palette"></i> Couleurs
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gestion des avis -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="admin-card">
+                        <div class="admin-card-icon">⭐</div>
+                        <h3>Avis Clients</h3>
+                        <p>Modérer les avis et commentaires</p>
+                        <div class="admin-card-actions">
+                            <a th:href="@{/SahazaWear/admin/avis}" class="btn btn-primary">
+                                <i class="bi bi-star"></i> Tous les avis
+                            </a>
+                            <a th:href="@{/SahazaWear/admin/avis/pending}" class="btn btn-warning">
+                                <i class="bi bi-exclamation-triangle"></i> À modérer
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Statistiques -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="admin-card">
+                        <div class="admin-card-icon">📊</div>
+                        <h3>Statistiques</h3>
+                        <p>Analyser les performances</p>
+                        <div class="admin-card-actions">
+                            <a th:href="@{/SahazaWear/admin/statistiques}" class="btn btn-primary">
+                                <i class="bi bi-graph-up"></i> Voir les stats
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Paramètres -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="admin-card">
+                        <div class="admin-card-icon">⚙️</div>
+                        <h3>Paramètres</h3>
+                        <p>Configuration du site</p>
+                        <div class="admin-card-actions">
+                            <a th:href="@{/SahazaWear/admin/parametres}" class="btn btn-primary">
+                                <i class="bi bi-gear"></i> Paramètres
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Retour au site -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="admin-card">
+                        <div class="admin-card-icon">🏠</div>
+                        <h3>Retour au site</h3>
+                        <p>Voir le site côté client</p>
+                        <div class="admin-card-actions">
+                            <a th:href="@{/Sahazawear}" class="btn btn-secondary">
+                                <i class="bi bi-house"></i> Page d'accueil
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Actions rapides -->
+            <div class="quick-actions mt-5">
+                <h2 class="text-center mb-4">⚡ Actions Rapides</h2>
+                <div class="d-flex justify-content-center gap-3 flex-wrap">
+                    <a th:href="@{/SahazaWear/admin/produits/create}" class="btn btn-lg btn-success">
+                        <i class="bi bi-plus-lg"></i> Ajouter un produit
+                    </a>
+                    <a th:href="@{/SahazaWear/admin/commandes}" class="btn btn-lg btn-primary">
+                        <i class="bi bi-box-seam"></i> Voir les commandes
+                    </a>
+                    <a th:href="@{/SahazaWear/admin/utilisateurs}" class="btn btn-lg btn-info">
+                        <i class="bi bi-people"></i> Gérer les utilisateurs
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <div th:replace="fragments :: footer"></div>
 </div>
+
 </body>
 </html>

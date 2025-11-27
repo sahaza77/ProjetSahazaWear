@@ -1,5 +1,6 @@
 package org.ldv.sahazawear.controller
 
+import org.ldv.sahazawear.model.dao.ProduitDAO
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.GetMapping
@@ -8,13 +9,14 @@ import org.springframework.security.core.Authentication
 
 
 @Controller
-class MainController {
+class MainController (val produitDAO: ProduitDAO){
 
     /**
      * Page d'accueil
      */
     @GetMapping("/SahazaWear")
-    fun home(): String {
+    fun home(model: Model): String {
+
         return "index"
     }
 
@@ -46,7 +48,9 @@ class MainController {
      * Page Produits
      */
     @GetMapping("/produits")
-    fun produits(): String {
+    fun produits(model: Model): String {
+        var produits = produitDAO.findAll()
+        model.addAttribute("produits",produits)
         return "pagesVisiteur/produits"
     }
 
