@@ -1,0 +1,207 @@
+@startgantt
+
+
+' Lien d'accès à la documentation PlantUML : https://plantuml.com/fr/gantt-diagram
+' ------------------------------------------
+
+
+' ---------------------
+' PARAMETRE GENEREAUX :
+' ---------------------
+
+' Définition de la langue :
+' ------------------------
+language fr
+
+
+' Choix de l'échelle :
+' --------------------
+' Choix possible (daily est la valeur par défaut): daily, weekly, monthly, quartely, yearly
+printscale daily
+
+
+' Début du calendrier/projet :
+' ----------------------------
+Project starts 2025-11-1
+
+
+' -----------------------------------------
+' Définition des jours/séances de travail :
+' -----------------------------------------
+
+' Week-end :
+' ----------
+sunday are closed
+saturday are closed
+
+' Jours sans séances :
+' --------------------
+wednesday are closed and are colored in LightGoldenRodYellow
+
+' Jours fériés :
+' --------------
+2025-11-11 are closed and are colored in LightCoral
+
+
+' -----------------------
+' DEFINIIION DES JALONS :
+' -----------------------
+
+' Date de début du projet :
+' -------------------------
+[**DEBUT PROJET E-COMMERCE**] as [DebutProjet] happens at 2025-11-3 and is colored in Green
+
+' Date de fin du projet :
+' -----------------------
+[**FIN PROJET E-COMMERCE**] as [FinProjet] happens at 2025-11-28 and is colored in OrangeRed
+Separator just at [FinProjet]'s end
+
+
+' -------------------
+' Autres évènements :
+' -------------------
+
+
+' ______________________________________________________
+'
+' LISTE DES TACHES ET DE LA CHARGE DE TRAVAIL ASSOCIEE :
+' ______________________________________________________
+
+
+' Dans cette section on défini l'ensemble des tâches des projets.
+' On aloue la charge de travail/durée pour chaque tâche.
+' Les tâches sont regroupées en étapes.
+
+
+' ---------------------------------------------------------
+' ETAPE - Préparation d'analyse' :
+' ---------------------------------------------------------
+[**Phase d'Analyse**] as [analyse] requires 3 days and is colored in DimGray
+    [Etude de marche] as [marche] requires 1 day and is colored in Gray
+    [Rédaction d'un cahier des charges] as [cdc] requires 2 day and is colored in DarkGray
+
+
+
+' Plannification des tâches de l'étape :
+' --------------------------------------
+ ' [analyse] starts 2025-11-3 '
+    [marche] starts at [analyse]'s start
+    [cdc] starts at [analyse]'s start
+
+
+
+' -----------------------------------------
+' ETAPE - Phase de conception :
+' -----------------------------------------
+
+' Définition des tâches et de leurs durées :
+' ------------------------------------------
+[**Phase de Conception**] as [conception] requires 2 days and is colored in Green
+    [Tracer les diagrammes] as [diagrammes] requires 1 day and is colored in DarkSeaGreen
+        [Diagramme de cas d'utilisation] as [UseCaseDiagram]  requires 1 day and is colored in GreenYellow
+        [Diagramme de classe] as [ClassDiagram] requires 1 day and is colored in GreenYellow
+    [Maquettes] as [maquettes] requires 1 day and is colored in DarkSeaGreen
+
+' Plannification des tâches de l'étape :
+' --------------------------------------
+'[conception] starts 2025-11-6'
+    [diagrammes] starts at [conception]'s start
+    [UseCaseDiagram] starts at [diagrammes]'s start
+    [ClassDiagram] starts at [diagrammes]'s start
+    [maquettes] starts at [conception]'s start
+
+
+
+
+' ________________________________________________________________
+'
+' Phase de Développement des fonctionnalités principales & tests associés :
+' ________________________________________________________________
+
+[**Phase de Développement**] as [Dev] requires 7 days and is colored in DarkGoldenRod
+[Dev] starts at [maquettes]'s end
+
+    ' ------------------
+    ' ETAPE - Site sur Mobile :
+    ' ------------------
+
+    ' Définition des tâches et de leurs durées :
+    ' ------------------------------------------
+    [**Interface Mobile**] as [mobile] requires 3 days and is colored in Orange
+        [Creation du projet] as [CreationProjet] requires 1 day and is colored in DimGray
+            [Structure du template] as [StructureTemplate] requires 1 days and is colored in LightBlue
+            [Création page home] as [DevPageHome] requires 2 days and is colored in LightBlue
+            [Création pages statiques] as [DevPagesStatiques] requires 3 days and is colored in LightBlue
+
+
+    ' ------------------
+    ' ETAPE - Site sur PC :
+    ' ------------------
+
+    [**Responsive**] as [responsive] requires 2 days and is colored in Orange
+       [Gestion des pages sur grand écran] as [adaptation] requires 2 days and is colored in LightBlue
+
+
+
+    [**Tests & Validation**] as [TestsSprint1] is colored in DarkOrchid
+        [Tests fonctionnels] as [TestsFonctionnelsSprint1] requires 3 days and is colored in Violet
+        [Tests unitaires] as [TestsUnitaires] requires 3 days and is colored in MediumPurple
+        [Correction des bugs] as [CorrectionsSprint1] requires 3 days and is colored in PaleVioletRed
+
+
+    ' Plannification des tâches du sprint :
+    ' -------------------------------------
+    [mobile] starts at [Dev]'s start
+        [CreationProjet] starts at [mobile]'s start
+        [StructureTemplate] starts at [mobile]'s start
+        [DevPageHome] starts at [mobile]'s start
+        [DevPagesStatiques] starts at [mobile]'s start
+
+    [responsive] starts at [DevPagesStatiques]'s end
+        [adaptation] starts at [responsive]'s start
+
+    [TestsSprint1] starts at [adaptation]'s end
+        [Tests fonctionnels] starts at [TestsSprint1]'s start
+        [TestsUnitaires] starts at [TestsSprint1]'s start
+        [CorrectionsSprint1] starts at [TestsSprint1]'s start
+
+
+
+' ---------------------------------------
+' ETAPE - Implémentation de la sécurité :
+' ---------------------------------------
+' [**Implémentation Sécurité**] as [Securite] requires 7 days and is colored in Red
+'     [Authentification & autorisation] as [Auth] requires 3 days and is colored in DarkRed
+'     [Contrôles d'accès] as [Controles] requires 2 days and is colored in IndianRed
+'     [Chiffrement] as [Chiffrement] requires 2 days and is colored in OrangeRed
+
+
+' Plannification des tâches de l'étape :
+' --------------------------------------
+
+
+
+
+' Plannification des tâches de l'étape :
+' --------------------------------------
+
+
+@endgantt
+
+
+
+' -----------------------
+' CODE ANNEXE POUR AIDE :
+' -----------------------
+
+' Afficher tous les codes couleurs de PlantUml
+@startuml
+colors
+@enduml
+
+
+
+' Afficher les couleurs proches d'une couleur (exemple avec chocolate)
+@startuml
+colors pink
+@enduml
